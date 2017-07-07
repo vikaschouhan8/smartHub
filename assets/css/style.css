@@ -1,0 +1,21 @@
+.links{
+    padding: 10px;
+}
+.links li a{
+    color:#fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+.links li a:hover{
+    background: #474747;
+}
+.links li a i{
+    padding: 0 25px 0 0;
+}
+.links li a b{
+    float: right;
+}
+.sideIcon{
+     float:right;
+}

@@ -1,0 +1,154 @@
+
+<div ng-show="!isTable">
+    <h1>Nutrition and health
+    <div class="sideIcon">
+    <md-button class="md-icon-button" aria-label="More" ng-click="isTable = !isTable;" >
+        <i class="zmdi zmdi-collection-plus zmdi-hc-2x"></i>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="More">
+        <i class="zmdi zmdi-refresh zmdi-hc-2x"></i>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="More">
+        <i class="zmdi zmdi-filter-list zmdi-hc-2x"></i>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="More">
+        <i class="zmdi zmdi-cloud-upload zmdi-hc-2x"></i>
+    </md-button>
+    </div>
+    </h1>
+    
+  <div  ng-controller="ExampleController" layout-margin>
+        <md-table-container>
+          <table md-table md-row-select multiple md-progress="promise">
+            
+            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+              <tr md-row>
+                <th md-column md-order-by="nameToLower"><span>Device Identifier</span></th>
+                <th md-column md-numeric md-order-by="calories.value"><span>Device Name</span></th>
+                <th md-column md-numeric>Device Model/Category</th>
+                <th md-column md-numeric>Region</th>
+                <th md-column md-numeric>Planned On</th>
+                <th md-column md-numeric>Actions</th>
+                <!--<th md-column md-numeric>Calcium (%)</th>
+                <th md-column md-numeric>Iron (%)</th>-->
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in nutritionList">
+                <td md-cell>{{dessert.id}}</td>
+                <td md-cell>{{dessert.name}}</td>
+                <td md-cell>{{dessert.model}}</td>
+                <td md-cell>{{dessert.region}}</td>
+                <td md-cell>{{dessert.plan}}</td>
+                <td md-cell>{{dessert.action}}</td>
+                <!--<td md-cell>{{dessert.calcium.value}}{{dessert.calcium.unit}}</td>
+                <td md-cell>{{dessert.iron.value}}{{dessert.iron.unit}}</td>-->
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+        <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+  </div>
+</div>
+<!--form startssss-->
+<div ng-show="isTable">
+    <h3>Plan New device
+    
+    <md-button class="md-icon-button sideIcon" aria-label="More" ng-click="isTable = !isTable;" >
+      <i class="zmdi zmdi-close zmdi-hc-2x" ></i>
+     </md-button>
+    </h3>
+    <hr>
+    <div ng-controller="AppCtrl" layout="column" ng-cloak>
+      <md-content layout-padding>
+        <form name="userForm">
+          </hr> 
+          <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                  <label>Device Model Type</label>
+                  <input md-maxlength="30" required name="name" ng-model="user.name" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                  <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                    </div>
+                  </div>
+              </md-input-container>
+                  <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                  <label>Device Name</label>
+                  <input name="social" ng-model="user.name" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                  <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                      <div ng-message-exp=""></div>
+                  </div>
+              </md-input-container>
+                  <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                  <label>Device identifer</label>
+                  <input name="social" ng-model="user.identifier" required minlength="10">        
+              </md-input-container>
+          </div>
+          <div layout-gt-sm="row">    
+              <md-input-container class="md-block" flex-gt-sm>
+                  <label>Location /Mobile assets ID</label>
+                  <input name="mobile" ng-model="user.location"required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                  <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        Your location must be between 10 and 100 characters long.
+                    </div>
+                  </div>
+              </md-input-container>
+              <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                  <label>Region</label>
+                  <input name="social" ng-pattern="/^.+@.+\..+$/" />
+                  <div ng-messages="userForm.email.$error" ng-hide="showHints"></div>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                  <label>Subregion</label>
+                  <input name="phone"  />
+                  <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                  </div>
+              </md-input-container>
+                </div>
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Device Model</label>
+                    <input name="email" ng-model="user.model"required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                    <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                      <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        Your Device Model must be between 10 and 100 characters long.
+                      </div>
+                    </div>
+                  </div>
+              <div>
+                <h4 style="margin-top:-20px">SECURITY INFORMATION</h4>
+                  </hr> 
+                    <div layout-gt-sm="row" style="margin-top:-20px">
+                      <md-input-container class="md-block" flex-gt-sm>
+                          <label>security mode</label>
+                              <input md-maxlength="30" required name="name" ng-model="user.mode" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                                  <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                      Your location must be between 10 and 100 characters long.
+                                      </div>
+                                    </div>
+                          </md-input-container>
+                      </div>
+                  <div>
+                  <h4 style="margin-top:-20px">Additional INFORMATION</h4>
+                      
+                      <div layout-gt-sm="row" style="margin-top:-20px">
+                          <md-input-container class="md-block" flex-gt-sm>
+                              <label>Device Model Type</label>
+                                <input md-maxlength="30" required name="text" ng-model="user.text" />   
+                                    <div ng-messages="userForm.name.$error">
+                                        <div ng-message="md-maxlength">
+                                        </div>
+                                    </div>
+                          </md-input-container>
+                      </div>
+                        <hr>
+            </form>
+          </md-content>
+     </div>
+   </div>
+

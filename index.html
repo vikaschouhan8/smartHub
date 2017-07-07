@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" ng-app="routeApp">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SmartHub</title>
+        <link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.css">
+        <!--Leaflet CSS-->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
+        <link rel="stylesheet" href="assets\css\material-design-iconic-font.min.css">
+        <!--mdTable CSS-->
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/md-data-table.min.css">        
+        <!-- AngularJS Material Dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-aria.min.js"></script>
+        <!-- AngularJS Material Javascript now available via Google CDN; version 1.1.4 used here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+        <!--UI-router-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+        <!--leaflet-->
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+        <script src="https://cdn.bootcss.com/angular-leaflet-directive/0.9.1/angular-leaflet-directive_dev_mapped.js"></script>
+        <script src="http://tombatossals.github.io/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+        <!--mdTable JavaScript-->
+        <script src="scripts/md-data-table.min.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts\controllers\mapCtrl.js"></script>
+        <script src="scripts\controllers\tableCtrl.js"></script>
+        <script src="scripts\controllers\sidebarCtrl.js"></script>
+    </head>
+<body ng-controller="AppCtrl">
+    <div layout="row">
+        <div ng-init="isOpen = true">
+            <!--sidenav-->
+            <md-sidenav flex class="md-sidenav-left" md-component-id="left"
+                md-is-locked-open="isOpen"
+                md-whiteframe="4" style="height:110.25%">
+                <md-toolbar class="md-theme-indigo">
+                    <div flex layout="row" layout-align="center center">
+                        <div flex='10'></div>
+                        <div flex='70'>
+                            <i class="zmdi zmdi-device-hub"></i>
+                            Smart<b>Hub</b>
+                        </div>
+                        <div flex layout-align="center">
+                            <md-button class="md-icon-button" aria-label="More" ng-click="isOpen = !isOpen;" >
+                                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </md-toolbar>
+                <md-content layout-padding ng-controller="LeftCtrl" style="background:#555459; height:100%" >
+                    <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                        <h1>SamrtHub</h1>
+                    </md-button>
+                    <ul class="links">
+                        <li><a ui-sref="map"><i class="zmdi zmdi-pin"></i>Leftlet Map <b>></b></a></li>
+                        <li><a ui-sref="table"><i class="zmdi zmdi-view-comfy"></i>Md Table<b>></b></a></li>
+                    </ul>   
+                </md-content>
+            </md-sidenav>
+            <!--//sidenav-->
+        </div>
+        <div flex style="height:600px">
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button" ng-click="isOpen = !isOpen;" aria-label="Settings" >
+                        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                    </md-button>
+
+                <h2 flex md-truncate>RF Planning</h2>
+                    <md-button class="md-icon-button" aria-label="Favorite">
+                        <md-icon><i class="zmdi zmdi-search zmdi-hc-2x"></i></md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button" aria-label="More">
+                        <md-icon><i class="zmdi zmdi-fullscreen zmdi-hc-2x"></i></md-icon>
+                    </md-button>
+                <div layout-align="end">
+                    <md-list-item class="md-2-line" >
+                        <div class="md-list-item-text">
+                            <h3>Geoffery Chaucer</h3>
+                            <p>Admin</p>
+                        </div>
+                        <img  src="img/img1.jpg"  class="md-avatar"  />
+                    </md-list-item>
+                </div>
+                </div>
+            </md-toolbar>
+            <div layout="row">
+                <div flex>
+                    <ui-view></ui-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
